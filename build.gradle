@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.7
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'net.anzix.tool.DrupalSecRss'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+dependencies {
+   compile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.9'
+   compile group: 'args4j', name: 'args4j', version: '2.0.16'
+}
+
+
